@@ -1,0 +1,18 @@
+export enum ErrorMessage {
+  EntityNotFoundError = 'entry not found',
+  FieldNotFoundErrorMessage = 'field not defined on your entity',
+  GqlOperationNotFoundErrorMessage = 'operation not defined',
+  ObjectTypeError = 'expected variable of type object but found object of type',
+  InvalidFieldValueErrorMessage = 'field got an invalid value',
+  DuplicateValueInArrayErrorMessage = 'field got a duplicated value',
+  InvalidFunctionInput = 'Received invalid function input',
+  BadImplementationErrorMessage = 'Internal server error. Bad implementation',
+  InvalidSlugConfigErrorMessage = 'Invalid slug configuration provided',
+  TestFailedErrorMessage = 'Test failed',
+  MalformedRefreshToken = 'Refresh token malformed',
+  RevokedRefreshToken = 'Refresh token revoked',
+  ExpiredRefreshToken = 'Refresh token expired',
+  InvalidSignInMethod = 'Cannot sign in using this method, user already ahs an account',
+  InspectionValidationErrorMessage = 'Cannot update steps if technician have not been assigned yet',
+  InvalidUrlErrorMessage = 'Provided invalid url',
+}
