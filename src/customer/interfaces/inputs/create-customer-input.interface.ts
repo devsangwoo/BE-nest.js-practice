@@ -1,4 +1,7 @@
-export interface ICreateCompanyInput {
+export interface ICreateCustomerInput {
   name: string;
-  telephoneNumer: string;
+  lastName: string;
+  telephoneNumber: string;
+  email: string;
+  company: string;
 }
