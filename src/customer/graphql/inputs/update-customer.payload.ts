@@ -1,11 +1,17 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { IUpdateCompanyPayload } from 'src/company/interfaces/inputs/update-company-payload.interface';
+import { Field, ID, InputType } from '@nestjs/graphql';
+import { IUpdateCustomerPayload } from 'src/customer/interfaces/inputs/update-customer-payload.interface';
 
 @InputType()
-export class UpdateCompanyPayload implements IUpdateCompanyPayload {
+export class UpdateCustomerPayload implements IUpdateCustomerPayload {
   @Field({ nullable: true })
   name?: string;
 
   @Field({ nullable: true })
   telephoneNumber?: string;
+
+  @Field({ nullable: true })
+  lastName?: string;
+
+  @Field((_type) => ID, { nullable: true })
+  company: string;
 }

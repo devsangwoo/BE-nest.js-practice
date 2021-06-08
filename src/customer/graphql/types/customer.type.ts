@@ -1,8 +1,10 @@
 import { ObjectType, ID, Field } from '@nestjs/graphql';
+import { Company } from 'src/company/graphql/types/company.type';
 import { ICompany } from 'src/company/interfaces/entities/company-entity.interface';
+import { ICustomer } from 'src/customer/interfaces/entities/customer-entity.interface';
 
 @ObjectType()
-export class Company implements ICompany {
+export class Customer implements ICustomer {
   @Field((_type) => ID)
   id: string;
 
@@ -10,11 +12,17 @@ export class Company implements ICompany {
   name: string;
 
   @Field()
-  slug: string;
+  lastName: string;
+
+  @Field()
+  email: string;
 
   @Field()
   telephoneNumber: string;
 
+  @Field((_type) => Company)
+  company: Company;
+
   @Field((_type) => [string])
-  clients: string[];
+  directions: string[];
 }

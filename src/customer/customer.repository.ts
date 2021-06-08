@@ -5,18 +5,18 @@ import { GetEntityByIdInput } from 'src/common/data/classes/get-entity-by-id.cla
 import { Repository } from 'src/common/data/classes/repository.class';
 import { EntryNotFoundException } from 'src/common/errors/errors';
 import { deleteEntityLog } from 'src/common/functions/log-message-builder';
-import { Company } from './database/customer.entity';
-import { ICompanyRepositoryType } from './interfaces/types/customer-repository-type.interface';
+import { Customer } from './database/customer.entity';
+import { ICustomerRepositoryType } from './interfaces/types/customer-repository-type.interface';
 
 @Injectable()
-export class CustomerRepository extends Repository<ICompanyRepositoryType> {
+export class CustomerRepository extends Repository<ICustomerRepositoryType> {
   constructor(
-    @InjectModel(Company.name)
-    private readonly companyModel: Model<Company>,
+    @InjectModel(Customer.name)
+    private readonly customerModel: Model<Customer>,
     @InjectModel(ModelEntity.name)
     private readonly modelEntityModel: Model<ModelEntity>,
   ) {
-    super(companyModel, Company.name);
+    super(companyModel, Customer.name);
   }
 
   public async deleteEntity(

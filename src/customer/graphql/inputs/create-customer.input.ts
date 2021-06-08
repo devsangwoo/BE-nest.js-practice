@@ -1,11 +1,20 @@
-import { InputType, Field } from '@nestjs/graphql';
-import { ICreateCompanyInput } from 'src/company/interfaces/inputs/create-company-input.interface';
+import { InputType, Field, ID } from '@nestjs/graphql';
+import { ICreateCustomerInput } from 'src/customer/interfaces/inputs/create-customer-input.interface';
 
 @InputType()
-export class CreateCustomerInput implements ICreateCompanyInput {
+export class CreateCustomerInput implements ICreateCustomerInput {
   @Field()
   name: string;
 
   @Field()
-  telephoneNumer: string;
+  lastName: string;
+
+  @Field()
+  email: string;
+
+  @Field()
+  telephoneNumber: string;
+
+  @Field((_type) => ID)
+  company: string;
 }

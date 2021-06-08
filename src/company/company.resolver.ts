@@ -13,7 +13,7 @@ export class CompanyResolver {
   constructor(private readonly companyService: CompanyService) {}
 
   @Query((_returns) => Company)
-  public async getBrandById(
+  public async getCompanyById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
   ): Promise<Company> {
@@ -21,7 +21,7 @@ export class CompanyResolver {
   }
 
   @Query((_returns) => [Company])
-  public async getAllBrands(
+  public async getAllCompanies(
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
   ): Promise<Company[]> {
@@ -36,7 +36,7 @@ export class CompanyResolver {
   }
 
   @Mutation((_of) => Company)
-  public async updateBrand(
+  public async updateCompany(
     @Args(GraphQlFieldNames.INPUT_FIELD) updateCompanyInput: UpdateCompanyInput,
   ): Promise<Company> {
     return this.companyService.updateEntity(updateCompanyInput);

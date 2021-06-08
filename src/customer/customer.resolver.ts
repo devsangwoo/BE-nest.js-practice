@@ -1,51 +1,53 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
-import { Company } from './graphql/types/customer.type';
-import { CreateCompanyInput } from './graphql/inputs/create-customer.input';
-import { UpdateCompanyInput } from './graphql/inputs/update-customer.input';
-import { CompanyService } from './customer.service';
+import { Customer } from './graphql/types/customer.type';
+import { CustomerService } from './customer.service';
 import { GraphQlFieldNames } from 'src/common/graphql/enums/graphql-label-types.enum';
 import { FilterInput } from 'src/common/graphql/inputs/graphql-filter.input';
 import { graphQlIdArgOption } from 'src/common/graphql/types/graphql-delete-mutation-options.type';
 import { graphQlFindQueryOptions } from 'src/common/graphql/types/graphql-filter-options';
+import { UpdateCustomerInput } from './graphql/inputs/update-customer.input';
+import { CreateCustomerInput } from './graphql/inputs/create-customer.input';
 
-@Resolver((_of) => Company)
-export class CompanyResolver {
-  constructor(private readonly companyService: CompanyService) {}
+@Resolver((_of) => Customer)
+export class CustomerResolver {
+  constructor(private readonly customerService: CustomerService) {}
 
-  @Query((_returns) => Company)
-  public async getBrandById(
+  @Query((_returns) => Customer)
+  public async getCustomerById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
-  ): Promise<Company> {
-    return this.companyService.getEntityById({ id });
+  ): Promise<Customer> {
+    return this.customerService.getEntityById({ id });
   }
 
-  @Query((_returns) => [Company])
-  public async getAllBrands(
+  @Query((_returns) => [Customer])
+  public async getAllCustomers(
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
-  ): Promise<Company[]> {
-    return this.companyService.getAllEntities(filterInput);
+  ): Promise<Customer[]> {
+    return this.customerService.getAllEntities(filterInput);
   }
 
-  @Mutation((_of) => Company)
-  public async createCompany(
-    @Args(GraphQlFieldNames.INPUT_FIELD) createCompanyInput: CreateCompanyInput,
-  ): Promise<Company> {
-    return this.companyService.createEntity(createCompanyInput);
+  @Mutation((_of) => Customer)
+  public async createCustomer(
+    @Args(GraphQlFieldNames.INPUT_FIELD)
+    createCustomerInput: CreateCustomerInput,
+  ): Promise<Customer> {
+    return this.customerService.createEntity(createCustomerInput);
   }
 
-  @Mutation((_of) => Company)
-  public async updateBrand(
-    @Args(GraphQlFieldNames.INPUT_FIELD) updateCompanyInput: UpdateCompanyInput,
-  ): Promise<Company> {
-    return this.companyService.updateEntity(updateCompanyInput);
+  @Mutation((_of) => Customer)
+  public async updateCustomer(
+    @Args(GraphQlFieldNames.INPUT_FIELD)
+    updateCustomerInput: UpdateCustomerInput,
+  ): Promise<Customer> {
+    return this.customerService.updateEntity(updateCustomerInput);
   }
 
-  @Mutation((_of) => Company)
-  public async deleteCompany(
+  @Mutation((_of) => Customer)
+  public async deleteCustomer(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
-  ): Promise<Company> {
-    return this.companyService.deleteEntity({ id });
+  ): Promise<Customer> {
+    return this.customerService.deleteEntity({ id });
   }
 }
