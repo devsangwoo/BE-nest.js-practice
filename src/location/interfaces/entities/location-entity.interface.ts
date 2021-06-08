@@ -1,10 +1,10 @@
-import { ICity } from '../../../city/interfaces/entities/city-entity.interface';
+import { ICountry } from 'src/country/interfaces/entities/country-entity.interface';
 
 export interface ILocation {
   id: string;
   latitude: number;
   longitude: number;
   address: string;
-  city: ICity;
+  country: ICountry;
   zipCode: string;
 }

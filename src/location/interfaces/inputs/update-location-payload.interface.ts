@@ -2,6 +2,6 @@ export interface IUpdateLocationPayload {
   latitude?: number;
   longitude?: number;
   address?: string;
-  city?: string;
+  country?: string;
   zipCode?: string;
 }

@@ -1,15 +1,15 @@
 import { Document, Schema as MongooseSchema } from 'mongoose';
-import { IBaseEntity } from '@common/common/data/interfaces/base-entity.interface';
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import * as MongooseAutoPopulate from 'mongoose-autopopulate';
-import { populateMaxDepthFour } from '@common/common/mongo/config/auto-populate.config';
 import { ILocation } from '../interfaces/entities/location-entity.interface';
-import { validateLatitude } from '@common/common/validations/location/latitude/latitude.validator';
-import { validateLongitude } from '@common/common/validations/location/longitude/longitude.validator';
-import { validateAddress } from '@common/common/validations/common/address/address.validator';
-import { validateId } from '@common/common/validations/common/id/id.validator';
-import { validateZipCode } from '@common/common/validations/location/zip-code/zip-code.validator';
-import { City } from '../../city/database/city.entity';
+import { IBaseEntity } from 'src/common/data/interfaces/base-entity.interface';
+import { validateLatitude } from 'src/common/validations/location/latitude/latitude.validator';
+import { validateLongitude } from 'src/common/validations/location/longitude/longitude.validator';
+import { validateAddress } from 'src/common/validations/common/address/address.validator';
+import { validateId } from 'src/common/validations/common/id/id.validator';
+import { Country } from 'src/country/database/country.entity';
+import { populateMaxDepth } from 'src/common/mongo/config/auto-populate.config';
+import { validateZipCode } from 'src/common/validations/location/zip-code/zip-code.validator';
 
 @Schema()
 export class Location extends Document implements IBaseEntity, ILocation {
@@ -28,11 +28,11 @@ export class Location extends Document implements IBaseEntity, ILocation {
   @Prop({
     required: true,
     type: MongooseSchema.Types.ObjectId,
-    ref: 'City',
+    ref: 'Country',
     validate: validateId,
-    autopopulate: { maxDepth: populateMaxDepthFour },
+    autopopulate: { maxDepth: populateMaxDepth },
   })
-  city: City;
+  country: Country;
 
   @Prop({ required: true, validate: validateZipCode })
   zipCode: string;
@@ -51,7 +51,7 @@ export const LocationSchema = SchemaFactory.createForClass(Location);
 
 LocationSchema.plugin(MongooseAutoPopulate);
 
-LocationSchema.pre('save', function(next) {
+LocationSchema.pre('save', function (next) {
   this.id = this._id;
 
   next();

@@ -3,17 +3,17 @@ import { InputType, Field, Float, ID } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateLocationPayload implements IUpdateLocationPayload {
-  @Field(_type => Float, { nullable: true })
+  @Field((_type) => Float, { nullable: true })
   latitude?: number;
 
-  @Field(_type => Float, { nullable: true })
+  @Field((_type) => Float, { nullable: true })
   longitude?: number;
 
   @Field({ nullable: true })
   address?: string;
 
-  @Field(_type => ID, { nullable: true })
-  city?: string;
+  @Field((_type) => ID, { nullable: true })
+  country?: string;
 
   @Field({ nullable: true })
   zipCode?: string;
