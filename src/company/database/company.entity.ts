@@ -9,6 +9,7 @@ import { validateIds } from 'src/common/validations/common/ids/ids.validator';
 import { ICompany } from '../interfaces/entities/company-entity.interface';
 import { validateTelephoneNumber } from 'src/common/validations/common/telephone-number/telephone-number.validator';
 import { populateMaxDepth } from 'src/common/mongo/config/auto-populate.config';
+import { Customer } from 'src/customer/database/customer.entity';
 
 @Schema()
 export class Company extends Document implements IBaseEntity, ICompany {
@@ -27,11 +28,11 @@ export class Company extends Document implements IBaseEntity, ICompany {
   @Prop({
     default: [],
     type: [MongooseSchema.Types.ObjectId],
-    ref: 'Client',
+    ref: 'Customer',
     validate: validateIds,
     autopopulate: { maxDepth: populateMaxDepth },
   })
-  clients: string[];
+  customers: Customer[];
 
   @Prop({ default: false })
   deleted: boolean;

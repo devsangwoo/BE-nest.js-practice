@@ -1,7 +1,8 @@
-import { forwardRef, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CompanyRepository, CustomerRepository } from './customer.repository';
-import { CompanyService, CustomerService } from './customer.service';
+import { CustomerRepository } from './customer.repository';
+import { CustomerResolver } from './customer.resolver';
+import { CustomerService } from './customer.service';
 import { Customer, CustomerSchema } from './database/customer.entity';
 
 @Module({
@@ -13,7 +14,7 @@ import { Customer, CustomerSchema } from './database/customer.entity';
       },
     ]),
   ],
-  providers: [CustomerService, customerre, CustomerRepository],
+  providers: [CustomerService, CustomerResolver, CustomerRepository],
   exports: [MongooseModule],
 })
 export class CustomerModule {}
