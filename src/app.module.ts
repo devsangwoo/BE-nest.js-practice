@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CompanyModule } from './company/company.module';
+import { CustomerModule } from './customer/customer.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { CompanyModule } from './company/company.module';
       context: ({ req }) => ({ headers: req.headers }),
     }),
     CompanyModule,
+    CustomerModule,
   ],
 })
 export class AppModule {}
