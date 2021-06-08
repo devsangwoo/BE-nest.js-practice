@@ -9,7 +9,7 @@ import { Company } from './database/customer.entity';
 import { ICompanyRepositoryType } from './interfaces/types/customer-repository-type.interface';
 
 @Injectable()
-export class CompanyRepository extends Repository<ICompanyRepositoryType> {
+export class CustomerRepository extends Repository<ICompanyRepositoryType> {
   constructor(
     @InjectModel(Company.name)
     private readonly companyModel: Model<Company>,

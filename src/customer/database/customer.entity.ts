@@ -4,34 +4,46 @@ import { Schema as MongooseSchema } from 'mongoose';
 import * as MongooseAutoPopulate from 'mongoose-autopopulate';
 import { IBaseEntity } from 'src/common/data/interfaces/base-entity.interface';
 import { validateName } from 'src/common/validations/common/name/name.validator';
-import { validateSlug } from 'src/common/validations/common/slug/slug.validator';
 import { validateIds } from 'src/common/validations/common/ids/ids.validator';
-import { ICompany } from '../interfaces/entities/customer-entity.interface';
+import { ICustomer } from '../interfaces/entities/customer-entity.interface';
 import { validateTelephoneNumber } from 'src/common/validations/common/telephone-number/telephone-number.validator';
 import { populateMaxDepth } from 'src/common/mongo/config/auto-populate.config';
+import { ICompany } from 'src/company/interfaces/entities/company-entity.interface';
+import { validateId } from 'src/common/validations/common/id/id.validator';
 
 @Schema()
-export class Company extends Document implements IBaseEntity, ICompany {
+export class Customer extends Document implements IBaseEntity, ICustomer {
   @Prop()
   id: string;
 
   @Prop({ required: true, validate: validateName })
   name: string;
 
-  @Prop({ required: true, unique: true, validate: validateSlug })
-  slug: string;
+  lastName: string;
+
+  @Prop({ required: true, unique: true, validate: validateEmail })
+  email: string;
 
   @Prop({ required: true, validate: validateTelephoneNumber })
   telephoneNumber: string;
 
   @Prop({
+    required: true,
+    type: MongooseSchema.Types.ObjectId,
+    ref: 'Company',
+    validate: validateId,
+    autopopulate: { maxDepth: populateMaxDepth },
+  })
+  company: ICompany;
+
+  @Prop({
     default: [],
     type: [MongooseSchema.Types.ObjectId],
-    ref: 'Client',
+    ref: 'Direction',
     validate: validateIds,
     autopopulate: { maxDepth: populateMaxDepth },
   })
-  clients: string[];
+  directions: string[];
 
   @Prop({ default: false })
   deleted: boolean;
@@ -43,11 +55,11 @@ export class Company extends Document implements IBaseEntity, ICompany {
   createdAt: string;
 }
 
-export const CompanySchema = SchemaFactory.createForClass(Company);
+export const CustomerSchema = SchemaFactory.createForClass(Customer);
 
-CompanySchema.plugin(MongooseAutoPopulate);
+CustomerSchema.plugin(MongooseAutoPopulate);
 
-CompanySchema.pre('save', function (next) {
+CustomerSchema.pre('save', function (next) {
   this.id = this._id;
 
   next();
