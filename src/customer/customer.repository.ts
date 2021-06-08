@@ -5,8 +5,8 @@ import { GetEntityByIdInput } from 'src/common/data/classes/get-entity-by-id.cla
 import { Repository } from 'src/common/data/classes/repository.class';
 import { EntryNotFoundException } from 'src/common/errors/errors';
 import { deleteEntityLog } from 'src/common/functions/log-message-builder';
-import { Company } from './database/company.entity';
-import { ICompanyRepositoryType } from './interfaces/types/company-repository-type.interface';
+import { Company } from './database/customer.entity';
+import { ICompanyRepositoryType } from './interfaces/types/customer-repository-type.interface';
 
 @Injectable()
 export class CompanyRepository extends Repository<ICompanyRepositoryType> {

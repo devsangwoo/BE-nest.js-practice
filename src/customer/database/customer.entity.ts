@@ -6,7 +6,7 @@ import { IBaseEntity } from 'src/common/data/interfaces/base-entity.interface';
 import { validateName } from 'src/common/validations/common/name/name.validator';
 import { validateSlug } from 'src/common/validations/common/slug/slug.validator';
 import { validateIds } from 'src/common/validations/common/ids/ids.validator';
-import { ICompany } from '../interfaces/entities/company-entity.interface';
+import { ICompany } from '../interfaces/entities/customer-entity.interface';
 import { validateTelephoneNumber } from 'src/common/validations/common/telephone-number/telephone-number.validator';
 import { populateMaxDepth } from 'src/common/mongo/config/auto-populate.config';
 

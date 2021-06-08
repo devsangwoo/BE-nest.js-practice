@@ -1,8 +1,8 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
-import { Company } from './graphql/types/company.type';
-import { CreateCompanyInput } from './graphql/inputs/create-company.input';
-import { UpdateCompanyInput } from './graphql/inputs/update-company.input';
-import { CompanyService } from './company.service';
+import { Company } from './graphql/types/customer.type';
+import { CreateCompanyInput } from './graphql/inputs/create-customer.input';
+import { UpdateCompanyInput } from './graphql/inputs/update-customer.input';
+import { CompanyService } from './customer.service';
 import { GraphQlFieldNames } from 'src/common/graphql/enums/graphql-label-types.enum';
 import { FilterInput } from 'src/common/graphql/inputs/graphql-filter.input';
 import { graphQlIdArgOption } from 'src/common/graphql/types/graphql-delete-mutation-options.type';

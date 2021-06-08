@@ -1,12 +1,11 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CompanyRepository } from './company.repository';
-import { CompanyService } from './company.service';
-import { Company, CompanySchema } from './database/company.entity';
+import { CompanyRepository } from './customer.repository';
+import { CompanyService } from './customer.service';
+import { Company, CompanySchema } from './database/customer.entity';
 
 @Module({
   imports: [
-    forwardRef(() => ModelModule),
     MongooseModule.forFeature([
       {
         name: Company.name,
@@ -17,4 +16,4 @@ import { Company, CompanySchema } from './database/company.entity';
   providers: [CompanyService, CompanyRepository, Company],
   exports: [MongooseModule],
 })
-export class CompanyModule {}
+export class CustomerModule {}
