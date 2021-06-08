@@ -1,13 +1,10 @@
 import { ICountry } from '../interfaces/entities/country-entity.interface';
-import { IBaseEntity } from '@common/common/data/interfaces/base-entity.interface';
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose';
+import { Document } from 'mongoose';
 import * as MongooseAutoPopulate from 'mongoose-autopopulate';
-import { populateMaxDepth } from '@common/common/mongo/config/auto-populate.config';
-import { validateSlug } from '@common/common/validations/common/slug/slug.validator';
-import { validateName } from '@common/common/validations/common/name/name.validator';
-import { validateIds } from '@common/common/validations/common/ids/ids.validator';
-import { State } from '../../state/database/state.entity';
+import { validateName } from 'src/common/validations/common/name/name.validator';
+import { validateSlug } from 'src/common/validations/common/slug/slug.validator';
+import { IBaseEntity } from 'src/common/data/interfaces/base-entity.interface';
 
 @Schema()
 export class Country extends Document implements ICountry, IBaseEntity {
@@ -27,15 +24,6 @@ export class Country extends Document implements ICountry, IBaseEntity {
   })
   slug: string;
 
-  @Prop({
-    default: [],
-    type: [MongooseSchema.Types.ObjectId],
-    ref: 'State',
-    validate: validateIds,
-    autopopulate: { maxDepth: populateMaxDepth },
-  })
-  states: State[];
-
   @Prop({ default: false })
   deleted: boolean;
 
@@ -50,7 +38,7 @@ export const CountrySchema = SchemaFactory.createForClass(Country);
 
 CountrySchema.plugin(MongooseAutoPopulate);
 
-CountrySchema.pre('save', function(next) {
+CountrySchema.pre('save', function (next) {
   this.id = this._id;
 
   next();
