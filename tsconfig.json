@@ -11,5 +11,8 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true
+  },
+  "typeAcquisition": {
+    "enable": true
   }
 }
