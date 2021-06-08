@@ -33,7 +33,7 @@
     "graphql-tools": "^7.0.5",
     "graphql-type-json": "^0.3.2",
     "mongodb-memory-server": "^6.9.6",
-    "mongoose": "^5.12.13",
+    "mongoose": "5.10.13",
     "mongoose-autopopulate": "^0.14.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

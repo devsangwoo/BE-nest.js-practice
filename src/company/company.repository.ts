@@ -5,34 +5,33 @@ import { GetEntityByIdInput } from 'src/common/data/classes/get-entity-by-id.cla
 import { Repository } from 'src/common/data/classes/repository.class';
 import { EntryNotFoundException } from 'src/common/errors/errors';
 import { deleteEntityLog } from 'src/common/functions/log-message-builder';
-import { Model as ModelEntity } from '../model/database/model.entity';
 import { Company } from './database/company.entity';
-import { IBrandRepositoryType } from './interfaces/types/company-repository-type.interface';
+import { ICompanyRepositoryType } from './interfaces/types/company-repository-type.interface';
 
 @Injectable()
-export class CompanyRepository extends Repository<IBrandRepositoryType> {
+export class CompanyRepository extends Repository<ICompanyRepositoryType> {
   constructor(
     @InjectModel(Company.name)
-    private readonly brandModel: Model<Company>,
+    private readonly companyModel: Model<Company>,
     @InjectModel(ModelEntity.name)
     private readonly modelEntityModel: Model<ModelEntity>,
   ) {
-    super(brandModel, Company.name);
+    super(companyModel, Company.name);
   }
 
   public async deleteEntity(
-    deleteBrandInput: GetEntityByIdInput,
+    deleteCompanyInput: GetEntityByIdInput,
   ): Promise<Company> {
     try {
-      this.logger.log(deleteEntityLog(Company.name, deleteBrandInput));
+      this.logger.log(deleteEntityLog(Company.name, deleteCompanyInput));
 
       const deleteObj = {
         deleted: true,
         updatedAt: new Date().toISOString(),
       };
 
-      const result = await this.brandModel
-        .findOneAndUpdate(deleteBrandInput, deleteObj, {
+      const result = await this.companyModel
+        .findOneAndUpdate(deleteCompanyInput, deleteObj, {
           useFindAndModify: false,
           new: true,
         })
@@ -43,7 +42,7 @@ export class CompanyRepository extends Repository<IBrandRepositoryType> {
       }
 
       await this.modelEntityModel.updateMany(
-        { _id: { $in: result.models } },
+        { _id: { $in: result.clients } },
         deleteObj,
       );
 
