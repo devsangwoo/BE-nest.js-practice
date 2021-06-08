@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Service } from 'src/common/data/classes/service.class';
-import { BrandRepository } from './company.repository';
-import { IBrandServiceType } from './interfaces/types/brand-service-type.interface';
+import { CompanyRepository } from './company.repository';
+import { IBrandServiceType } from './interfaces/types/company-service-type.interface';
 
 @Injectable()
-export class BrandService extends Service<IBrandServiceType> {
-  constructor(private readonly brandRepository: BrandRepository) {
-    super(brandRepository);
+export class CompanyService extends Service<IBrandServiceType> {
+  constructor(private readonly companyRepository: CompanyRepository) {
+    super(companyRepository);
   }
 }

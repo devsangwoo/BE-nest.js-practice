@@ -7,7 +7,7 @@ import { EntryNotFoundException } from 'src/common/errors/errors';
 import { deleteEntityLog } from 'src/common/functions/log-message-builder';
 import { Model as ModelEntity } from '../model/database/model.entity';
 import { Company } from './database/company.entity';
-import { IBrandRepositoryType } from './interfaces/types/brand-repository-type.interface';
+import { IBrandRepositoryType } from './interfaces/types/company-repository-type.interface';
 
 @Injectable()
 export class CompanyRepository extends Repository<IBrandRepositoryType> {
