@@ -6,25 +6,25 @@ import { Repository } from 'src/common/data/classes/repository.class';
 import { EntryNotFoundException } from 'src/common/errors/errors';
 import { deleteEntityLog } from 'src/common/functions/log-message-builder';
 import { Model as ModelEntity } from '../model/database/model.entity';
-import { Brand } from './database/company.entity';
+import { Company } from './database/company.entity';
 import { IBrandRepositoryType } from './interfaces/types/brand-repository-type.interface';
 
 @Injectable()
-export class BrandRepository extends Repository<IBrandRepositoryType> {
+export class CompanyRepository extends Repository<IBrandRepositoryType> {
   constructor(
-    @InjectModel(Brand.name)
-    private readonly brandModel: Model<Brand>,
+    @InjectModel(Company.name)
+    private readonly brandModel: Model<Company>,
     @InjectModel(ModelEntity.name)
     private readonly modelEntityModel: Model<ModelEntity>,
   ) {
-    super(brandModel, Brand.name);
+    super(brandModel, Company.name);
   }
 
   public async deleteEntity(
     deleteBrandInput: GetEntityByIdInput,
-  ): Promise<Brand> {
+  ): Promise<Company> {
     try {
-      this.logger.log(deleteEntityLog(Brand.name, deleteBrandInput));
+      this.logger.log(deleteEntityLog(Company.name, deleteBrandInput));
 
       const deleteObj = {
         deleted: true,
