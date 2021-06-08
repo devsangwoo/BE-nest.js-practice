@@ -1,4 +1,4 @@
-import { BaseServiceType } from '@common/common/data/interfaces/base-service-type.interface';
+import { BaseServiceType } from 'src/common/data/interfaces/base-service-type.interface';
 import { Location } from '../../database/location.entity';
 import { CreateLocationInput } from '../../graphql/inputs/create-location.input';
 import { UpdateLocationInput } from '../../graphql/inputs/update-location.input';
