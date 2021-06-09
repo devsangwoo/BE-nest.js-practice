@@ -29,6 +29,8 @@
     "@nestjs/mongoose": "^7.0.2",
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.5.1",
+    "@types/passport-jwt": "^3.0.5",
+    "@types/passport-local": "^1.0.33",
     "apollo-server-express": "^2.25.0",
     "bcryptjs": "^2.4.3",
     "express-mongo-sanitize": "^2.0.2",
