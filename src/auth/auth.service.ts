@@ -8,7 +8,6 @@ import { UpdatePasswordInput } from './graphql/input/update-password.input';
 import { AuthRepository } from './auth.repository';
 import { SignUpUserInput } from './graphql/input/sign-up-user.input';
 import { AuthProviders, AuthType } from './utils/auth-providers.enum';
-import { createUserPayload } from './utils/create-user.payload';
 
 @Injectable()
 export class AuthService {

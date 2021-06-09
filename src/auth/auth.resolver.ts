@@ -11,16 +11,15 @@ import { CreateCredentialInput } from 'src/credential/graphql/inputs/create-cred
 import { User } from 'src/user/graphql/types/user.type';
 import { JwtPayload } from 'src/common/auth/interfaces/jwt-payload.interface';
 import { UserService } from 'src/user/user.service';
-import { TokensService } from './tokens.service';
 import { UpdatePasswordInput } from './graphql/input/update-password.input';
 import { UpdatePasswordPayload } from './graphql/input/update-password.payload';
+import { SignUpUserInput } from './graphql/input/sign-up-user.input';
 
 @Resolver()
 export class AuthResolver {
   constructor(
     private readonly userService: UserService,
     private readonly authService: AuthService,
-    private readonly tokensService: TokensService,
   ) {}
 
   @Public()

@@ -7,6 +7,7 @@ import { getModelToken, MongooseModule } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserSchema } from 'src/user/database/user.entity';
 import { EntryNotFoundException } from 'src/common/errors/errors';
+import { AuthRepository } from '../auth.repository';
 
 describe(`Auth Service`, () => {
   let authService: AuthService;
@@ -20,6 +21,10 @@ describe(`Auth Service`, () => {
 
   const credentialService = {
     getCredentialByIdOrEmail: jest.fn(),
+  };
+
+  const authRepository = {
+    localSignUpUser: jest.fn(),
   };
 
   const createUser = async () => {
@@ -51,6 +56,10 @@ describe(`Auth Service`, () => {
         {
           provide: CredentialService,
           useValue: credentialService,
+        },
+        {
+          provide: AuthRepository,
+          useValue: authRepository,
         },
         AuthService,
       ],
