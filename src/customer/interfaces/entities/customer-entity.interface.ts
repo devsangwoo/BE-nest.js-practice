@@ -1,4 +1,5 @@
 import { ICompany } from 'src/company/interfaces/entities/company-entity.interface';
+import { ILocation } from 'src/location/interfaces/entities/location-entity.interface';
 
 export interface ICustomer {
   id: string;
@@ -7,5 +8,5 @@ export interface ICustomer {
   telephoneNumber: string;
   email: string;
   company: ICompany;
-  directions: string[];
+  locations: ILocation[];
 }

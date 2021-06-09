@@ -17,4 +17,7 @@ export class CreateLocationInput implements ICreateLocationInput {
 
   @Field()
   zipCode: string;
+
+  @Field((_type) => ID)
+  customer: string;
 }

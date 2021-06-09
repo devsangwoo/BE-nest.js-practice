@@ -10,6 +10,7 @@ import { validateId } from 'src/common/validations/common/id/id.validator';
 import { Country } from 'src/country/database/country.entity';
 import { populateMaxDepth } from 'src/common/mongo/config/auto-populate.config';
 import { validateZipCode } from 'src/common/validations/location/zip-code/zip-code.validator';
+import { ICustomer } from 'src/customer/interfaces/entities/customer-entity.interface';
 
 @Schema()
 export class Location extends Document implements IBaseEntity, ILocation {
@@ -33,6 +34,15 @@ export class Location extends Document implements IBaseEntity, ILocation {
     autopopulate: { maxDepth: populateMaxDepth },
   })
   country: Country;
+
+  @Prop({
+    required: true,
+    type: MongooseSchema.Types.ObjectId,
+    ref: 'Customer',
+    validate: validateId,
+    autopopulate: { maxDepth: populateMaxDepth },
+  })
+  customer: ICustomer;
 
   @Prop({ required: true, validate: validateZipCode })
   zipCode: string;

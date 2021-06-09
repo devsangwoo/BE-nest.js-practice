@@ -1,4 +1,4 @@
 export interface ICreateCompanyInput {
   name: string;
-  telephoneNumer: string;
+  telephoneNumber: string;
 }

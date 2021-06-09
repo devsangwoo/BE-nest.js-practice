@@ -8,9 +8,10 @@ import { validateIds } from 'src/common/validations/common/ids/ids.validator';
 import { ICustomer } from '../interfaces/entities/customer-entity.interface';
 import { validateTelephoneNumber } from 'src/common/validations/common/telephone-number/telephone-number.validator';
 import { populateMaxDepth } from 'src/common/mongo/config/auto-populate.config';
-import { ICompany } from 'src/company/interfaces/entities/company-entity.interface';
 import { validateId } from 'src/common/validations/common/id/id.validator';
-import { validateEmail } from 'src/common/validations/common/email/email.validator';
+import { validateEmail } from 'src/common/validations/user/email/email.validator';
+import { Company } from 'src/company/database/company.entity';
+import { ILocation } from 'src/location/interfaces/entities/location-entity.interface';
 
 @Schema()
 export class Customer extends Document implements IBaseEntity, ICustomer {
@@ -20,9 +21,10 @@ export class Customer extends Document implements IBaseEntity, ICustomer {
   @Prop({ required: true, validate: validateName })
   name: string;
 
+  @Prop({ required: true, validate: validateName })
   lastName: string;
 
-  @Prop({ required: true, unique: true, validate: validateEmail })
+  @Prop({ required: true, validate: validateEmail })
   email: string;
 
   @Prop({ required: true, validate: validateTelephoneNumber })
@@ -35,16 +37,16 @@ export class Customer extends Document implements IBaseEntity, ICustomer {
     validate: validateId,
     autopopulate: { maxDepth: populateMaxDepth },
   })
-  company: ICompany;
+  company: Company;
 
   @Prop({
     default: [],
     type: [MongooseSchema.Types.ObjectId],
-    ref: 'Direction',
+    ref: 'Location',
     validate: validateIds,
     autopopulate: { maxDepth: populateMaxDepth },
   })
-  directions: string[];
+  locations: ILocation[];
 
   @Prop({ default: false })
   deleted: boolean;

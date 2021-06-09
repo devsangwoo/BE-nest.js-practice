@@ -2,10 +2,13 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './auth/auth.module';
 import { CompanyModule } from './company/company.module';
 import { CountryModule } from './country/country.module';
+import { CredentialModule } from './credential/credential.module';
 import { CustomerModule } from './customer/customer.module';
 import { LocationModule } from './location/location.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -21,6 +24,9 @@ import { LocationModule } from './location/location.module';
     CustomerModule,
     LocationModule,
     CountryModule,
+    UserModule,
+    CredentialModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
