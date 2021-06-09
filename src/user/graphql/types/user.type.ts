@@ -8,16 +8,7 @@ export class User implements IUser {
   id: string;
 
   @Field()
-  name: string;
-
-  @Field()
-  lastName: string;
-
-  @Field()
   email: string;
-
-  @Field({ nullable: true })
-  telephoneNumber: string;
 
   @Field((_type) => UserRoles)
   role: UserRoles;

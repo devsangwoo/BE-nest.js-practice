@@ -7,6 +7,7 @@ import { UpdateUserPayload } from './update-user.payload';
 export class UpdateUserInput implements IUpdateEntity {
   @Field()
   where: GetEntityByIdInput;
+
   @Field()
   data: UpdateUserPayload;
 }
