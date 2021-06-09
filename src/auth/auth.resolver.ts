@@ -11,8 +11,6 @@ import { CreateCredentialInput } from 'src/credential/graphql/inputs/create-cred
 import { User } from 'src/user/graphql/types/user.type';
 import { JwtPayload } from 'src/common/auth/interfaces/jwt-payload.interface';
 import { UserService } from 'src/user/user.service';
-import { UpdateSelfPayload } from './graphql/input/update-self.payload';
-import { UpdateSelfInput } from './graphql/input/update-self.input';
 import { TokensService } from './tokens.service';
 import { UpdatePasswordInput } from './graphql/input/update-password.input';
 import { UpdatePasswordPayload } from './graphql/input/update-password.payload';
@@ -34,21 +32,6 @@ export class AuthResolver {
     @CurrentUser() user: UserEntity,
   ): Promise<AuthenticationType> {
     return this.authService.signInUser(user);
-  }
-
-  @Mutation((_of) => User)
-  public async updateSelf(
-    @CurrentUser()
-    jwtPayload: JwtPayload,
-    @Args(GraphQlFieldNames.INPUT_FIELD)
-    updateUserPayload: UpdateSelfPayload,
-  ): Promise<User> {
-    const updateUserInput: UpdateSelfInput = {
-      where: { id: jwtPayload.id },
-      data: updateUserPayload,
-    };
-
-    return this.userService.updateEntity(updateUserInput);
   }
 
   @Mutation((_of) => User)

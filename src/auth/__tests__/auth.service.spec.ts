@@ -24,8 +24,6 @@ describe(`Auth Service`, () => {
 
   const createUser = async () => {
     const entity = new userModel({
-      name: 'John',
-      lastName: 'Doe',
       email: 'john@test.com',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
