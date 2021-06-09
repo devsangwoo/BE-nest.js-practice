@@ -5,7 +5,7 @@ import { LocationRepository } from './location.repository';
 
 @Injectable()
 export class LocationService extends Service<ILocationServiceType> {
-  constructor(private readonly pathRepository: LocationRepository) {
-    super(pathRepository);
+  constructor(private readonly locationRepository: LocationRepository) {
+    super(locationRepository);
   }
 }

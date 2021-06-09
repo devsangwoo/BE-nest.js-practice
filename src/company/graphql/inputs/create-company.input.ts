@@ -7,5 +7,5 @@ export class CreateCompanyInput implements ICreateCompanyInput {
   name: string;
 
   @Field()
-  telephoneNumer: string;
+  telephoneNumber: string;
 }
