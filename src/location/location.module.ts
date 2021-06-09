@@ -6,9 +6,11 @@ import { Location, LocationSchema } from './database/location.entity';
 import { LocationService } from './location.service';
 import { JwtStrategy } from 'src/common/auth/strategies/jwt.strategy';
 import { GlobalJwtAuthAndRolesGuard } from 'src/common/auth/guards/global-jwt-auth-and-roles.guard';
+import { CustomerModule } from 'src/customer/customer.module';
 
 @Module({
   imports: [
+    CustomerModule,
     MongooseModule.forFeature([
       {
         name: Location.name,
