@@ -4,6 +4,7 @@ import { GlobalJwtAuthAndRolesGuard } from 'src/common/auth/guards/global-jwt-au
 import { JwtStrategy } from 'src/common/auth/strategies/jwt.strategy';
 import { CredentialModule } from 'src/credential/credential.module';
 import { UserModule } from 'src/user/user.module';
+import { AuthRepository } from './auth.repository';
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
 import { LocalStrategy } from './strategies/local.strategy';
@@ -19,6 +20,7 @@ import { TokensService } from './tokens.service';
     AuthService,
     TokensService,
     LocalStrategy,
+    AuthRepository,
     JwtStrategy,
     AuthResolver,
     ...GlobalJwtAuthAndRolesGuard,

@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { GqlContextType, GqlExecutionContext } from '@nestjs/graphql';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { BadImplementationException } from 'src/common/errors/errors';
 import { AUTHORIZED_ROLES_KEY } from '../decorators/authorized-roles.decorator';
 
@@ -9,8 +9,6 @@ export class RolesGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {
-    if (<GqlContextType>context.getType() != 'graphql') return true;
-
     const authorizedRoles = this.reflector.get<string[]>(
       AUTHORIZED_ROLES_KEY,
       context.getHandler(),
