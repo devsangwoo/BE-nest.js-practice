@@ -5,12 +5,17 @@ import * as bcrypt from 'bcryptjs';
 import { AuthenticationType } from './graphql/types/authentication.type';
 import { TokensService } from './tokens.service';
 import { UpdatePasswordInput } from './graphql/input/update-password.input';
+import { AuthRepository } from './auth.repository';
+import { SignUpUserInput } from './graphql/input/sign-up-user.input';
+import { AuthProviders, AuthType } from './utils/auth-providers.enum';
+import { createUserPayload } from './utils/create-user.payload';
 
 @Injectable()
 export class AuthService {
   constructor(
     private credentialService: CredentialService,
     private tokensService: TokensService,
+    private authRepository: AuthRepository,
   ) {}
 
   private readonly logger = new Logger();
@@ -26,6 +31,18 @@ export class AuthService {
       this.logger.error(`${JSON.stringify(error)}`);
       return false;
     }
+  }
+
+  async signUpUser(
+    signUpUserInput: SignUpUserInput,
+  ): Promise<AuthenticationType> {
+    signUpUserInput.authType = AuthType.PASSWORD;
+    signUpUserInput.socialProvider = AuthProviders.Local;
+
+    const user = await this.authRepository.localSignUpUser(signUpUserInput);
+    const accessToken = await this.tokensService.signAccessToken(user);
+
+    return { accessToken, user };
   }
 
   async signInUser(user: User): Promise<AuthenticationType> {

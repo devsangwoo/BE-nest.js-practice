@@ -10,8 +10,8 @@ import { validateTelephoneNumber } from 'src/common/validations/common/telephone
 import { populateMaxDepth } from 'src/common/mongo/config/auto-populate.config';
 import { ICompany } from 'src/company/interfaces/entities/company-entity.interface';
 import { validateId } from 'src/common/validations/common/id/id.validator';
-import { validateEmail } from 'src/common/validations/common/email/email.validator';
 import { ILocation } from 'src/location/interfaces/entities/location-entity.interface';
+import { validateEmail } from 'src/common/validations/user/email/email.validator';
 
 @Schema()
 export class Customer extends Document implements IBaseEntity, ICustomer {

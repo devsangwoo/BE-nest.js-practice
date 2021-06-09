@@ -24,6 +24,15 @@ export class AuthResolver {
   ) {}
 
   @Public()
+  @Mutation((_of) => AuthenticationType)
+  public async signUpUser(
+    @Args(GraphQlFieldNames.INPUT_FIELD)
+    signUpUserInput: SignUpUserInput,
+  ): Promise<AuthenticationType> {
+    return this.authService.signUpUser(signUpUserInput);
+  }
+
+  @Public()
   @UseGuards(LocalAuthGuard)
   @Mutation((_of) => AuthenticationType)
   public async signInUser(
