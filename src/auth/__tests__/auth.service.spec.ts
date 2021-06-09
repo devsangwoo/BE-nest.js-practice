@@ -99,11 +99,6 @@ describe(`Auth Service`, () => {
     it(`should call the signAccessToken and createAndSignRefreshToken method of the tokensService`, async () => {
       await authService.signInUser(user);
 
-      expect(tokensService.createAndSignRefreshToken).toHaveBeenCalled();
-      expect(tokensService.createAndSignRefreshToken).toHaveBeenCalledWith(
-        user,
-      );
-
       expect(tokensService.signAccessToken).toHaveBeenCalled();
       expect(tokensService.signAccessToken).toHaveBeenLastCalledWith(user);
     });
