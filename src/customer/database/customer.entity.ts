@@ -11,6 +11,7 @@ import { populateMaxDepth } from 'src/common/mongo/config/auto-populate.config';
 import { ICompany } from 'src/company/interfaces/entities/company-entity.interface';
 import { validateId } from 'src/common/validations/common/id/id.validator';
 import { validateEmail } from 'src/common/validations/common/email/email.validator';
+import { ILocation } from 'src/location/interfaces/entities/location-entity.interface';
 
 @Schema()
 export class Customer extends Document implements IBaseEntity, ICustomer {
@@ -40,11 +41,11 @@ export class Customer extends Document implements IBaseEntity, ICustomer {
   @Prop({
     default: [],
     type: [MongooseSchema.Types.ObjectId],
-    ref: 'Direction',
+    ref: 'Location',
     validate: validateIds,
     autopopulate: { maxDepth: populateMaxDepth },
   })
-  directions: string[];
+  locations: ILocation[];
 
   @Prop({ default: false })
   deleted: boolean;
