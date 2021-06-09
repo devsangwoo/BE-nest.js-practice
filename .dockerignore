@@ -1,0 +1,6 @@
+# NodeJS files
+node_modules
+.git
+dist
+*/dist
+env
