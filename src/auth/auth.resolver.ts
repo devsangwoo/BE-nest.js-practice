@@ -14,10 +14,6 @@ import { UserService } from 'src/user/user.service';
 import { UpdateSelfPayload } from './graphql/input/update-self.payload';
 import { UpdateSelfInput } from './graphql/input/update-self.input';
 import { TokensService } from './tokens.service';
-import { RefreshAccessTokenInput } from './graphql/input/refresh-access-token.input';
-import { AuthorizedRoles } from 'src/common/auth/decorators/authorized-roles.decorator';
-import { UserRoles } from 'src/common/auth/enums/user-roles.enum';
-import { GetEntityByIdInput } from 'src/common/data/classes/get-entity-by-id.class';
 import { UpdatePasswordInput } from './graphql/input/update-password.input';
 import { UpdatePasswordPayload } from './graphql/input/update-password.payload';
 

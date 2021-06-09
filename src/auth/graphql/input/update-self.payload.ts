@@ -10,11 +10,5 @@ export class UpdateSelfPayload implements IUpdateUserPayload {
   lastName?: string;
 
   @Field({ nullable: true })
-  address?: string;
-
-  @Field({ nullable: true })
-  profilePicture?: string;
-
-  @Field({ nullable: true })
   telephoneNumber?: string;
 }

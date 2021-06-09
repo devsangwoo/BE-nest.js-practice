@@ -31,11 +31,7 @@ export class AuthService {
   async signInUser(user: User): Promise<AuthenticationType> {
     const accessToken = await this.tokensService.signAccessToken(user);
 
-    const refreshToken = await this.tokensService.createAndSignRefreshToken(
-      user,
-    );
-
-    return { accessToken, refreshToken, user };
+    return { accessToken, user };
   }
 
   public async updatePassword(
