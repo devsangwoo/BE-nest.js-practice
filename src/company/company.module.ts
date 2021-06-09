@@ -1,12 +1,13 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CustomerModule } from 'src/customer/customer.module';
 import { CompanyRepository } from './company.repository';
 import { CompanyService } from './company.service';
 import { Company, CompanySchema } from './database/company.entity';
 
 @Module({
   imports: [
-    forwardRef(() => ModelModule),
+    forwardRef(() => CustomerModule),
     MongooseModule.forFeature([
       {
         name: Company.name,

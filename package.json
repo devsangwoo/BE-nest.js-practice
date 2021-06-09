@@ -25,16 +25,16 @@
     "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.5.1",
     "@nestjs/graphql": "^7.10.6",
-    "@nestjs/mongoose": "^7.2.4",
+    "@nestjs/mongoose": "^7.0.2",
     "@nestjs/platform-express": "^7.5.1",
     "apollo-server-express": "^2.25.0",
-    "express-mongo-sanitize": "^2.1.0",
+    "express-mongo-sanitize": "^2.0.2",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.5",
     "graphql-type-json": "^0.3.2",
     "mongodb-memory-server": "^6.9.6",
     "mongoose": "5.10.13",
-    "mongoose-autopopulate": "^0.14.0",
+    "mongoose-autopopulate": "^0.13.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
@@ -69,14 +69,20 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
+    "setupFilesAfterEnv": [
+      "./src/config/setup.jest.ts"
+    ],
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "rootDir": ".",
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "testRegex": ".spec.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }
