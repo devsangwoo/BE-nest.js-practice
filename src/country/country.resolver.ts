@@ -7,11 +7,15 @@ import { graphQlIdArgOption } from 'src/common/graphql/types/graphql-delete-muta
 import { GraphQlFieldNames } from 'src/common/graphql/enums/graphql-label-types.enum';
 import { graphQlFindQueryOptions } from 'src/common/graphql/types/graphql-filter-options';
 import { FilterInput } from 'src/common/graphql/inputs/graphql-filter.input';
+import { AuthorizedRoles } from 'src/common/auth/decorators/authorized-roles.decorator';
+import { UserRoles } from 'src/common/auth/enums/user-roles.enum';
+import { CLIENT } from 'src/common/auth/arrays/authorized-roles.arrays';
 
 @Resolver((__of) => Country)
 export class CountryResolver {
   constructor(private readonly countryService: CountryService) {}
 
+  @AuthorizedRoles(UserRoles.ADMIN)
   @Query((_returns) => Country)
   public async getCountryById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
@@ -19,6 +23,7 @@ export class CountryResolver {
     return this.countryService.getEntityById({ id });
   }
 
+  @AuthorizedRoles(...CLIENT)
   @Query((_returns) => [Country])
   public async getAllCountries(
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
@@ -27,6 +32,7 @@ export class CountryResolver {
     return this.countryService.getAllEntities(filterInput);
   }
 
+  @AuthorizedRoles(UserRoles.ADMIN)
   @Mutation((_of) => Country)
   public async createCountry(
     @Args(GraphQlFieldNames.INPUT_FIELD) createCountryInput: CreateCountryInput,
@@ -34,6 +40,7 @@ export class CountryResolver {
     return this.countryService.createEntity(createCountryInput);
   }
 
+  @AuthorizedRoles(UserRoles.ADMIN)
   @Mutation((_of) => Country)
   public async updateCountry(
     @Args(GraphQlFieldNames.INPUT_FIELD) updateCountryInput: UpdateCountryInput,
@@ -41,6 +48,7 @@ export class CountryResolver {
     return this.countryService.updateEntity(updateCountryInput);
   }
 
+  @AuthorizedRoles(UserRoles.ADMIN)
   @Mutation((_of) => Country)
   public async deleteCountry(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,

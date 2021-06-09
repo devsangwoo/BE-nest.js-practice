@@ -4,7 +4,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { GlobalJwtAuthAndRolesGuard } from 'src/common/auth/guards/global-jwt-auth-and-roles.guard';
 import { JwtStrategy } from 'src/common/auth/strategies/jwt.strategy';
 import { CredentialModule } from 'src/credential/credential.module';
-import { RefreshTokenModule } from 'src/refresh-token/refresh-token.module';
 import { UserModule } from 'src/user/user.module';
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
@@ -15,10 +14,6 @@ import { TokensService } from './tokens.service';
   imports: [
     forwardRef(() => UserModule),
     CredentialModule,
-    RefreshTokenModule,
-    ConfigModule.forRoot({
-      envFilePath: `./env/.inspection.env`,
-    }),
     JwtModule.register({}),
   ],
   providers: [

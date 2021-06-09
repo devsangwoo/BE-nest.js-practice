@@ -4,6 +4,8 @@ import { CountryRepository } from './country.repository';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Country, CountrySchema } from './database/country.entity';
 import { CountryService } from './country.service';
+import { JwtStrategy } from 'src/common/auth/strategies/jwt.strategy';
+import { GlobalJwtAuthAndRolesGuard } from 'src/common/auth/guards/global-jwt-auth-and-roles.guard';
 
 @Module({
   imports: [
@@ -14,7 +16,13 @@ import { CountryService } from './country.service';
       },
     ]),
   ],
-  providers: [CountryService, CountryResolver, CountryRepository],
+  providers: [
+    CountryService,
+    CountryResolver,
+    CountryRepository,
+    JwtStrategy,
+    ...GlobalJwtAuthAndRolesGuard,
+  ],
   exports: [MongooseModule],
 })
 export class CountryModule {}

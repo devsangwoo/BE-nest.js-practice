@@ -7,11 +7,15 @@ import { GraphQlFieldNames } from 'src/common/graphql/enums/graphql-label-types.
 import { graphQlIdArgOption } from 'src/common/graphql/types/graphql-delete-mutation-options.type';
 import { FilterInput } from 'src/common/graphql/inputs/graphql-filter.input';
 import { graphQlFindQueryOptions } from 'src/common/graphql/types/graphql-filter-options';
+import { AuthorizedRoles } from 'src/common/auth/decorators/authorized-roles.decorator';
+import { UserRoles } from 'src/common/auth/enums/user-roles.enum';
+import { CLIENT } from 'src/common/auth/arrays/authorized-roles.arrays';
 
 @Resolver((_of) => Location)
 export class LocationResolver {
   constructor(private readonly locationService: LocationService) {}
 
+  @AuthorizedRoles(...CLIENT)
   @Query((_returns) => Location)
   public async getLocationById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
@@ -20,6 +24,7 @@ export class LocationResolver {
     return this.locationService.getEntityById({ id });
   }
 
+  @AuthorizedRoles(...CLIENT)
   @Query((_returns) => [Location])
   public async getAllLocations(
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
@@ -28,6 +33,7 @@ export class LocationResolver {
     return this.locationService.getAllEntities(filterInput);
   }
 
+  @AuthorizedRoles(...CLIENT)
   @Mutation((_of) => Location)
   public async createLocation(
     @Args(GraphQlFieldNames.INPUT_FIELD)
@@ -36,6 +42,7 @@ export class LocationResolver {
     return this.locationService.createEntity(createLocationInput);
   }
 
+  @AuthorizedRoles(UserRoles.ADMIN)
   @Mutation((_of) => Location)
   public async updateLocation(
     @Args(GraphQlFieldNames.INPUT_FIELD)
@@ -44,6 +51,7 @@ export class LocationResolver {
     return this.locationService.updateEntity(updateLocationInput);
   }
 
+  @AuthorizedRoles(UserRoles.ADMIN)
   @Mutation((_of) => Location)
   public async deleteLocation(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,

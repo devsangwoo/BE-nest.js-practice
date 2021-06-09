@@ -17,8 +17,6 @@ import { TokensService } from './tokens.service';
 import { RefreshAccessTokenInput } from './graphql/input/refresh-access-token.input';
 import { AuthorizedRoles } from 'src/common/auth/decorators/authorized-roles.decorator';
 import { UserRoles } from 'src/common/auth/enums/user-roles.enum';
-import { RevokeRefreshTokenType } from '../refresh-token/graphql/types/revoke-refresh-token.type';
-import { RefreshTokenService } from 'src/refresh-token/refresh-token.service';
 import { GetEntityByIdInput } from 'src/common/data/classes/get-entity-by-id.class';
 import { UpdatePasswordInput } from './graphql/input/update-password.input';
 import { UpdatePasswordPayload } from './graphql/input/update-password.payload';
@@ -29,12 +27,11 @@ export class AuthResolver {
     private readonly userService: UserService,
     private readonly authService: AuthService,
     private readonly tokensService: TokensService,
-    private readonly refreshTokenService: RefreshTokenService,
   ) {}
 
   @Public()
   @UseGuards(LocalAuthGuard)
-  @Mutation(_of => AuthenticationType)
+  @Mutation((_of) => AuthenticationType)
   public async signInUser(
     @Args(GraphQlFieldNames.INPUT_FIELD)
     signInUserInput: CreateCredentialInput,
@@ -43,7 +40,7 @@ export class AuthResolver {
     return this.authService.signInUser(user);
   }
 
-  @Mutation(_of => User)
+  @Mutation((_of) => User)
   public async updateSelf(
     @CurrentUser()
     jwtPayload: JwtPayload,
@@ -58,7 +55,7 @@ export class AuthResolver {
     return this.userService.updateEntity(updateUserInput);
   }
 
-  @Mutation(_of => User)
+  @Mutation((_of) => User)
   public async updatePassword(
     @CurrentUser()
     jwtPayload: JwtPayload,
@@ -73,29 +70,11 @@ export class AuthResolver {
     return this.authService.updatePassword(updatePasswordInput);
   }
 
-  @Query(_returns => User)
+  @Query((_returns) => User)
   public async self(
     @CurrentUser()
     jwtPayload: JwtPayload,
   ): Promise<User> {
     return this.userService.getEntityById({ id: jwtPayload.id });
-  }
-
-  @Public()
-  @Mutation(_of => AuthenticationType)
-  public async refreshAccessToken(
-    @Args(GraphQlFieldNames.INPUT_FIELD)
-    refreshAccessTokenInput: RefreshAccessTokenInput,
-  ): Promise<AuthenticationType> {
-    return this.tokensService.refreshAccessToken(refreshAccessTokenInput);
-  }
-
-  @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation(_of => RevokeRefreshTokenType)
-  public async revokeRefreshToken(
-    @Args(GraphQlFieldNames.INPUT_FIELD)
-    revokeRefreshTokenInput: GetEntityByIdInput,
-  ): Promise<RevokeRefreshTokenType> {
-    return this.refreshTokenService.revokeRefreshToken(revokeRefreshTokenInput);
   }
 }
