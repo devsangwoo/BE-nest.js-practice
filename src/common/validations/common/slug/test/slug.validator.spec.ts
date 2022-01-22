@@ -23,7 +23,7 @@ describe('ValidateSlug', () => {
     ['An invalid Slug'],
     ['AN-Inval id Sl-gu'],
     ['Anoher . Invalid-Slug'],
-  ])('should return false given an invalid slug = "%s"', val => {
+  ])('should return false given an invalid slug = "%s"', (val) => {
     const res = _validateSlug(val);
 
     expect(res).toEqual(false);
@@ -31,7 +31,7 @@ describe('ValidateSlug', () => {
 
   it.each([['test-slug'], ['slug'], ['a-super-long-valid-slug']])(
     'should return true given a valid slug = "%s"',
-    val => {
+    (val) => {
       const res = _validateSlug(val);
 
       expect(res).toEqual(true);

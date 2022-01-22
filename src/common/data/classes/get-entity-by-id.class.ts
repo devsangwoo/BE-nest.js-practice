@@ -3,6 +3,6 @@ import { IGetEntityById } from '../interfaces/get-entity-by-id.interface';
 
 @InputType()
 export class GetEntityByIdInput implements IGetEntityById {
-  @Field(_type => ID)
+  @Field((_type) => ID)
   id: string;
 }

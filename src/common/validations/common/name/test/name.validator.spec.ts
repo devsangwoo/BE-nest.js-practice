@@ -21,7 +21,7 @@ describe('ValidateName', () => {
 
   it.each([['a'], ['qwertyuiopasdfghjklzxcvbnm']])(
     'should return false if given an invalid name = "%s"',
-    val => {
+    (val) => {
       const res = _validateName(val);
 
       expect(res).toBe(false);
@@ -30,7 +30,7 @@ describe('ValidateName', () => {
 
   it.each([['gpl', 'gasolina']])(
     'should return true if given a valid name = "%s"',
-    val => {
+    (val) => {
       const res = _validateName(val);
 
       expect(res).toBe(true);

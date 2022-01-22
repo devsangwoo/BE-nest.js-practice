@@ -21,7 +21,7 @@ describe('ValidateID', () => {
 
   it.each([['a'], ['qwertyuiopasdfghjklzxcvbnm']])(
     'should return false if given an invalid ID = "%s"',
-    val => {
+    (val) => {
       const res = _validateId(val);
 
       expect(res).toBe(false);
@@ -30,7 +30,7 @@ describe('ValidateID', () => {
 
   it.each([['5fcfa592ff275a0024e49f6c', '60218abd6e6f89002b8bfbaa']])(
     'should return true if given a valid Id = "%s"',
-    val => {
+    (val) => {
       const res = _validateId(val);
 
       expect(res).toBe(true);

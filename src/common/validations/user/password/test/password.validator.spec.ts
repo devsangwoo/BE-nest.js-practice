@@ -24,18 +24,18 @@ describe('ValidatePassword', () => {
     [
       'qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm$2a$12$VD6jnVWKAKo6volMxPUg8eZCsSu/PAACkwroI22knS5Jcj.c59qUe',
     ],
-  ])('should return false if given an invalid password = "%s"', val => {
+  ])('should return false if given an invalid password = "%s"', (val) => {
     const res = _validatePassword(val);
 
     expect(res).toBe(false);
   });
 
-  it.each([
-    ['mytestpassword'],
-    ['123456'],
-  ])('should return true if given a valid password = "%s"', val => {
-    const res = _validatePassword(val);
+  it.each([['mytestpassword'], ['123456']])(
+    'should return true if given a valid password = "%s"',
+    (val) => {
+      const res = _validatePassword(val);
 
-    expect(res).toBe(true);
-  });
+      expect(res).toBe(true);
+    },
+  );
 });

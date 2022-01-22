@@ -15,7 +15,7 @@ describe('ValidateLongitude', () => {
 
   it.each([[-181], [180.4]])(
     'should return false if given an invalid longitude = "%s"',
-    val => {
+    (val) => {
       const res = _validateLongitude(val);
 
       expect(res).toBe(false);
@@ -24,7 +24,7 @@ describe('ValidateLongitude', () => {
 
   it.each([[-180, 179.3499454]])(
     'should return true if given a valid longitude = "%s"',
-    val => {
+    (val) => {
       const res = _validateLongitude(val);
 
       expect(res).toBe(true);

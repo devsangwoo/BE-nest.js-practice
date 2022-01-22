@@ -3,7 +3,8 @@ import { IGetCredentialByIdOrEmailInput } from 'src/credential/interfaces/inputs
 
 @InputType()
 export class GetCredentialByIdOrEmailInput
-  implements IGetCredentialByIdOrEmailInput {
+  implements IGetCredentialByIdOrEmailInput
+{
   @Field({ nullable: true })
   id?: string;
 

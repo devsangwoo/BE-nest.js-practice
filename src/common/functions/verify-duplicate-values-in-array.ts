@@ -1,6 +1,6 @@
 import { DuplicateValueInArrayException } from '../errors/errors';
 
-export const verifyDuplicateValuesInArray = data => {
+export const verifyDuplicateValuesInArray = (data) => {
   const fieldsToVerify = Object.keys(data);
 
   for (const field of fieldsToVerify) {

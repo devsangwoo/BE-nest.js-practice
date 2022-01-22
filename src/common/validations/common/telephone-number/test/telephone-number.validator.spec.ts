@@ -21,7 +21,7 @@ describe('ValidateTelephoneNumber', () => {
 
   it.each([['comida.com'], ['www.tusurupu.com'], ['test@cuco']])(
     'should return false given an invalid telephoneNumber = "%s"',
-    val => {
+    (val) => {
       const res = _validateTelephoneNumber(val);
 
       expect(res).toEqual(false);
@@ -30,7 +30,7 @@ describe('ValidateTelephoneNumber', () => {
 
   it.each([['8094834501'], ['5223358764']])(
     'should return true given a valid telephoneNumber = "%s"',
-    val => {
+    (val) => {
       const res = _validateTelephoneNumber(val);
       expect(res).toEqual(true);
     },

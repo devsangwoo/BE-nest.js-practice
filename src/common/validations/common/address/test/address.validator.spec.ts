@@ -24,7 +24,7 @@ describe('ValidateName', () => {
     [
       'qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm',
     ],
-  ])('should return false if given an invalid name = "%s"', val => {
+  ])('should return false if given an invalid name = "%s"', (val) => {
     const res = _validateAddress(val);
 
     expect(res).toBe(false);
@@ -32,7 +32,7 @@ describe('ValidateName', () => {
 
   it.each([['Lucerna', 'Santo Domingo Este calle 12 E']])(
     'should return true if given a valid name = "%s"',
-    val => {
+    (val) => {
       const res = _validateAddress(val);
 
       expect(res).toBe(true);

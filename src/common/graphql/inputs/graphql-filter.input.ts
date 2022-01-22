@@ -5,15 +5,15 @@ import { GraphQLSortOperation } from '../filter/operations/sort';
 
 @InputType()
 export class FilterInput implements IBaseGraphqlFilterInput {
-  @Field(_type => Int, { nullable: true })
+  @Field((_type) => Int, { nullable: true })
   start?: number;
 
-  @Field(_type => Int, { nullable: true })
+  @Field((_type) => Int, { nullable: true })
   limit?: number;
 
-  @Field(_type => GraphQLJSON, { nullable: true })
+  @Field((_type) => GraphQLJSON, { nullable: true })
   sort?: Record<string, GraphQLSortOperation>;
 
-  @Field(_type => GraphQLJSON, { nullable: true })
+  @Field((_type) => GraphQLJSON, { nullable: true })
   where?: Record<string, any>;
 }

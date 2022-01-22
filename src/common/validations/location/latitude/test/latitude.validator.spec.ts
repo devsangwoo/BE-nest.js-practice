@@ -15,7 +15,7 @@ describe('ValidateLatitude', () => {
 
   it.each([[-91], [90.4]])(
     'should return false if given an invalid latitude = "%s"',
-    val => {
+    (val) => {
       const res = _validateLatitude(val);
 
       expect(res).toBe(false);
@@ -24,7 +24,7 @@ describe('ValidateLatitude', () => {
 
   it.each([[-90, 89.934354464574]])(
     'should return true if given a valid latitude = "%s"',
-    val => {
+    (val) => {
       const res = _validateLatitude(val);
 
       expect(res).toBe(true);

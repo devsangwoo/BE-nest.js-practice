@@ -44,9 +44,8 @@ export const initializeCommonRepositoryTests = async (
     ],
   }).compile();
 
-  const entityRepository = testModule.get<typeof EntityRepository>(
-    EntityRepository,
-  );
+  const entityRepository =
+    testModule.get<typeof EntityRepository>(EntityRepository);
 
   const entityModel = testModule.get<Model<typeof Entity>>(
     getModelToken(Entity.name),

@@ -21,7 +21,7 @@ describe('ValidateEmail', () => {
 
   it.each([['comida.com'], ['www.tusurupu.com'], ['test@cuco']])(
     'should return false given an invalid email = "%s"',
-    val => {
+    (val) => {
       const res = _validateEmail(val);
 
       expect(res).toEqual(false);
@@ -30,7 +30,7 @@ describe('ValidateEmail', () => {
 
   it.each([['test@gmail.com'], ['comida@yahoo.com']])(
     'should return true given a valid email = "%s"',
-    val => {
+    (val) => {
       const res = _validateEmail(val);
       expect(res).toEqual(true);
     },

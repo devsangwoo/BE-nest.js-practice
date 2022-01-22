@@ -21,7 +21,7 @@ describe('ValidateZipCode', () => {
 
   it.each([['a'], ['qwertyuiopasdfghjklzxcvbnm']])(
     'should return false if given an invalid zipCode = "%s"',
-    val => {
+    (val) => {
       const res = _validateZipCode(val);
 
       expect(res).toBe(false);
@@ -30,7 +30,7 @@ describe('ValidateZipCode', () => {
 
   it.each([['113', '11516']])(
     'should return true if given a valid zipCode = "%s"',
-    val => {
+    (val) => {
       const res = _validateZipCode(val);
 
       expect(res).toBe(true);

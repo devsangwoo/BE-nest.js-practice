@@ -1,4 +1,4 @@
 export type slugConfigType = {
-    keys: string[],
-    isUnique: boolean;
+  keys: string[];
+  isUnique: boolean;
 };

@@ -3,7 +3,8 @@ import { IUpdateCredentialPayload } from 'src/credential/interfaces/inputs/updat
 
 @InputType()
 export class UpdateCredentialPasswordPayload
-  implements IUpdateCredentialPayload {
+  implements IUpdateCredentialPayload
+{
   @Field()
   password: string;
 }

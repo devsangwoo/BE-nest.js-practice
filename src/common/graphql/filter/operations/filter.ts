@@ -28,11 +28,8 @@ export function graphqlToMongoQueryUtil(
       // Get filter value
       const filterValue = filterOptions[field];
 
-      const {
-        fieldName,
-        mongoOperation,
-        graphqlOperation,
-      } = extractMongoDbOperationAndFieldName(field);
+      const { fieldName, mongoOperation, graphqlOperation } =
+        extractMongoDbOperationAndFieldName(field);
 
       const checkResult = hasObjectField(checkObject, fieldName);
 

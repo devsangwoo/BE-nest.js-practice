@@ -1,4 +1,4 @@
-export const updateEntities: any = data => {
+export const updateEntities: any = (data) => {
   const updateData = {};
 
   const fieldToUpdateList = Object.keys(data);
