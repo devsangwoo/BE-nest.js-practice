@@ -20,7 +20,7 @@ export class UserResolver {
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
   ): Promise<User> {
-    return this.userService.getEntityById({ id });
+    return await this.userService.getEntityById({ id });
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -29,7 +29,7 @@ export class UserResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
   ): Promise<User[]> {
-    return this.userService.getAllEntities(filterInput);
+    return await this.userService.getAllEntities(filterInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -38,7 +38,7 @@ export class UserResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD)
     createUserInput: CreateUserInput,
   ): Promise<User> {
-    return this.userService.createEntity(createUserInput);
+    return await this.userService.createEntity(createUserInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -47,7 +47,7 @@ export class UserResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD)
     updateUserInput: UpdateUserInput,
   ): Promise<User> {
-    return this.userService.updateEntity(updateUserInput);
+    return await this.userService.updateEntity(updateUserInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -55,6 +55,6 @@ export class UserResolver {
   public async deleteUser(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<User> {
-    return this.userService.deleteEntity({ id });
+    return await this.userService.deleteEntity({ id });
   }
 }
