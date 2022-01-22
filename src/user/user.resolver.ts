@@ -10,12 +10,12 @@ import { UserRoles } from 'src/common/auth/enums/user-roles.enum';
 import { CreateUserInput } from './graphql/inputs/create-user.input';
 import { UpdateUserInput } from './graphql/inputs/update-user.input';
 
-@Resolver((_of) => User)
+@Resolver(() => User)
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Query((_returns) => User)
+  @Query(() => User)
   public async getUserById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
@@ -24,7 +24,7 @@ export class UserResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Query((_returns) => [User])
+  @Query(() => [User])
   public async getAllUsers(
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
@@ -33,7 +33,7 @@ export class UserResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => User)
+  @Mutation(() => User)
   public async createUser(
     @Args(GraphQlFieldNames.INPUT_FIELD)
     createUserInput: CreateUserInput,
@@ -42,7 +42,7 @@ export class UserResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => User)
+  @Mutation(() => User)
   public async updateUser(
     @Args(GraphQlFieldNames.INPUT_FIELD)
     updateUserInput: UpdateUserInput,
@@ -51,7 +51,7 @@ export class UserResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => User)
+  @Mutation(() => User)
   public async deleteUser(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<User> {
