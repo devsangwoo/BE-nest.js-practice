@@ -11,48 +11,48 @@ import { AuthorizedRoles } from 'src/common/auth/decorators/authorized-roles.dec
 import { UserRoles } from 'src/common/auth/enums/user-roles.enum';
 import { CLIENT } from 'src/common/auth/arrays/authorized-roles.arrays';
 
-@Resolver((__of) => Country)
+@Resolver(() => Country)
 export class CountryResolver {
   constructor(private readonly countryService: CountryService) {}
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Query((_returns) => Country)
+  @Query(() => Country)
   public async getCountryById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Country> {
-    return this.countryService.getEntityById({ id });
+    return await this.countryService.getEntityById({ id });
   }
 
   @AuthorizedRoles(...CLIENT)
-  @Query((_returns) => [Country])
+  @Query(() => [Country])
   public async getAllCountries(
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
   ): Promise<Country[]> {
-    return this.countryService.getAllEntities(filterInput);
+    return await this.countryService.getAllEntities(filterInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => Country)
+  @Mutation(() => Country)
   public async createCountry(
     @Args(GraphQlFieldNames.INPUT_FIELD) createCountryInput: CreateCountryInput,
   ): Promise<Country> {
-    return this.countryService.createEntity(createCountryInput);
+    return await this.countryService.createEntity(createCountryInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => Country)
+  @Mutation(() => Country)
   public async updateCountry(
     @Args(GraphQlFieldNames.INPUT_FIELD) updateCountryInput: UpdateCountryInput,
   ): Promise<Country> {
-    return this.countryService.updateEntity(updateCountryInput);
+    return await this.countryService.updateEntity(updateCountryInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => Country)
+  @Mutation(() => Country)
   public async deleteCountry(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Country> {
-    return this.countryService.deleteEntity({ id });
+    return await this.countryService.deleteEntity({ id });
   }
 }
