@@ -11,12 +11,12 @@ import { AuthorizedRoles } from 'src/common/auth/decorators/authorized-roles.dec
 import { UserRoles } from 'src/common/auth/enums/user-roles.enum';
 import { CLIENT } from 'src/common/auth/arrays/authorized-roles.arrays';
 
-@Resolver((_of) => Company)
+@Resolver(() => Company)
 export class CompanyResolver {
   constructor(private readonly companyService: CompanyService) {}
 
   @AuthorizedRoles(...CLIENT)
-  @Query((_returns) => Company)
+  @Query(() => Company)
   public async getCompanyById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
@@ -25,7 +25,7 @@ export class CompanyResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Query((_returns) => [Company])
+  @Query(() => [Company])
   public async getAllCompanies(
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
@@ -34,7 +34,7 @@ export class CompanyResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => Company)
+  @Mutation(() => Company)
   public async createCompany(
     @Args(GraphQlFieldNames.INPUT_FIELD) createCompanyInput: CreateCompanyInput,
   ): Promise<Company> {
@@ -42,7 +42,7 @@ export class CompanyResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => Company)
+  @Mutation(() => Company)
   public async updateCompany(
     @Args(GraphQlFieldNames.INPUT_FIELD) updateCompanyInput: UpdateCompanyInput,
   ): Promise<Company> {
@@ -50,7 +50,7 @@ export class CompanyResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => Company)
+  @Mutation(() => Company)
   public async deleteCompany(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Company> {
