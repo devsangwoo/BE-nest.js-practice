@@ -4,7 +4,7 @@ import { Customer } from 'src/customer/graphql/types/customer.type';
 
 @ObjectType()
 export class Company implements ICompany {
-  @Field((_type) => ID)
+  @Field(() => ID)
   id: string;
 
   @Field()
@@ -16,6 +16,6 @@ export class Company implements ICompany {
   @Field()
   telephoneNumber: string;
 
-  @Field((_type) => [Customer])
+  @Field(() => [Customer])
   customers: Customer[];
 }
