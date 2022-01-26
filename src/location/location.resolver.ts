@@ -30,7 +30,7 @@ export class LocationResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
   ): Promise<Location[]> {
-    return this.locationService.getAllEntities(filterInput);
+    return await this.locationService.getAllEntities(filterInput);
   }
 
   @AuthorizedRoles(...CLIENT)
@@ -39,7 +39,7 @@ export class LocationResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD)
     createLocationInput: CreateLocationInput,
   ): Promise<Location> {
-    return this.locationService.createEntity(createLocationInput);
+    return await this.locationService.createEntity(createLocationInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -48,7 +48,7 @@ export class LocationResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD)
     updateLocationInput: UpdateLocationInput,
   ): Promise<Location> {
-    return this.locationService.updateEntity(updateLocationInput);
+    return await this.locationService.updateEntity(updateLocationInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -56,6 +56,6 @@ export class LocationResolver {
   public async deleteLocation(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Location> {
-    return this.locationService.deleteEntity({ id });
+    return await this.locationService.deleteEntity({ id });
   }
 }
