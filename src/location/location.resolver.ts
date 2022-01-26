@@ -11,12 +11,12 @@ import { AuthorizedRoles } from 'src/common/auth/decorators/authorized-roles.dec
 import { UserRoles } from 'src/common/auth/enums/user-roles.enum';
 import { CLIENT } from 'src/common/auth/arrays/authorized-roles.arrays';
 
-@Resolver((_of) => Location)
+@Resolver(() => Location)
 export class LocationResolver {
   constructor(private readonly locationService: LocationService) {}
 
   @AuthorizedRoles(...CLIENT)
-  @Query((_returns) => Location)
+  @Query(() => Location)
   public async getLocationById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
@@ -25,7 +25,7 @@ export class LocationResolver {
   }
 
   @AuthorizedRoles(...CLIENT)
-  @Query((_returns) => [Location])
+  @Query(() => [Location])
   public async getAllLocations(
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
@@ -34,7 +34,7 @@ export class LocationResolver {
   }
 
   @AuthorizedRoles(...CLIENT)
-  @Mutation((_of) => Location)
+  @Mutation(() => Location)
   public async createLocation(
     @Args(GraphQlFieldNames.INPUT_FIELD)
     createLocationInput: CreateLocationInput,
@@ -43,7 +43,7 @@ export class LocationResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => Location)
+  @Mutation(() => Location)
   public async updateLocation(
     @Args(GraphQlFieldNames.INPUT_FIELD)
     updateLocationInput: UpdateLocationInput,
@@ -52,7 +52,7 @@ export class LocationResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => Location)
+  @Mutation(() => Location)
   public async deleteLocation(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Location> {
