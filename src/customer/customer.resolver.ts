@@ -11,12 +11,12 @@ import { AuthorizedRoles } from 'src/common/auth/decorators/authorized-roles.dec
 import { CLIENT } from 'src/common/auth/arrays/authorized-roles.arrays';
 import { UserRoles } from 'src/common/auth/enums/user-roles.enum';
 
-@Resolver((_of) => Customer)
+@Resolver(() => Customer)
 export class CustomerResolver {
   constructor(private readonly customerService: CustomerService) {}
 
   @AuthorizedRoles(...CLIENT)
-  @Query((_returns) => Customer)
+  @Query(() => Customer)
   public async getCustomerById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
@@ -25,7 +25,7 @@ export class CustomerResolver {
   }
 
   @AuthorizedRoles(...CLIENT)
-  @Query((_returns) => [Customer])
+  @Query(() => [Customer])
   public async getAllCustomers(
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
@@ -34,7 +34,7 @@ export class CustomerResolver {
   }
 
   @AuthorizedRoles(...CLIENT)
-  @Mutation((_of) => Customer)
+  @Mutation(() => Customer)
   public async createCustomer(
     @Args(GraphQlFieldNames.INPUT_FIELD)
     createCustomerInput: CreateCustomerInput,
@@ -43,7 +43,7 @@ export class CustomerResolver {
   }
 
   @AuthorizedRoles(...CLIENT)
-  @Mutation((_of) => Customer)
+  @Mutation(() => Customer)
   public async updateCustomer(
     @Args(GraphQlFieldNames.INPUT_FIELD)
     updateCustomerInput: UpdateCustomerInput,
@@ -52,7 +52,7 @@ export class CustomerResolver {
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
-  @Mutation((_of) => Customer)
+  @Mutation(() => Customer)
   public async deleteCustomer(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Customer> {
