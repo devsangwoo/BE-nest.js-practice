@@ -21,7 +21,7 @@ export class LocationResolver {
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
   ): Promise<Location> {
-    return this.locationService.getEntityById({ id });
+    return await this.locationService.getEntityById({ id });
   }
 
   @AuthorizedRoles(...CLIENT)
