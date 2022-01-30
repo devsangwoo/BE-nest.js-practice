@@ -5,7 +5,7 @@ import { ICustomer } from 'src/customer/interfaces/entities/customer-entity.inte
 
 @ObjectType()
 export class Customer implements ICustomer {
-  @Field((_type) => ID)
+  @Field(() => ID)
   id: string;
 
   @Field()
@@ -20,9 +20,9 @@ export class Customer implements ICustomer {
   @Field()
   telephoneNumber: string;
 
-  @Field((_type) => Company)
+  @Field(() => Company)
   company: Company;
 
-  @Field((_type) => [Location])
+  @Field(() => [Location])
   locations: Location[];
 }
