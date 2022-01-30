@@ -5,22 +5,22 @@ import { ILocation } from '../../interfaces/entities/location-entity.interface';
 
 @ObjectType()
 export class Location implements ILocation {
-  @Field((_type) => ID)
+  @Field(() => ID)
   id: string;
 
-  @Field((_type) => Float)
+  @Field(() => Float)
   latitude: number;
 
-  @Field((_type) => Float)
+  @Field(() => Float)
   longitude: number;
 
   @Field()
   address: string;
 
-  @Field((_type) => Country)
+  @Field(() => Country)
   country: Country;
 
-  @Field((_type) => Customer)
+  @Field(() => Customer)
   customer: Customer;
 
   @Field()
