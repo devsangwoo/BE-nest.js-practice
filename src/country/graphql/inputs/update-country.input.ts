@@ -7,6 +7,7 @@ import { UpdateCountryPayload } from './update-country.payload';
 export class UpdateCountryInput implements IUpdateEntity {
   @Field()
   where: GetEntityByIdInput;
+
   @Field()
   data: UpdateCountryPayload;
 }
