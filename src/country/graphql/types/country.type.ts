@@ -3,7 +3,7 @@ import { ObjectType, Field, ID } from '@nestjs/graphql';
 
 @ObjectType()
 export class Country implements ICountry {
-  @Field((_type) => ID)
+  @Field(() => ID)
   id: string;
 
   @Field()
