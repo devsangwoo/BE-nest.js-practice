@@ -23,7 +23,7 @@ export class AuthResolver {
   ) {}
 
   @Public()
-  @Mutation((_of) => AuthenticationType)
+  @Mutation(() => AuthenticationType)
   public async signUpUser(
     @Args(GraphQlFieldNames.INPUT_FIELD)
     signUpUserInput: SignUpUserInput,
@@ -33,7 +33,7 @@ export class AuthResolver {
 
   @Public()
   @UseGuards(LocalAuthGuard)
-  @Mutation((_of) => AuthenticationType)
+  @Mutation(() => AuthenticationType)
   public async signInUser(
     @Args(GraphQlFieldNames.INPUT_FIELD)
     signInUserInput: CreateCredentialInput,
@@ -42,7 +42,7 @@ export class AuthResolver {
     return await this.authService.signInUser(user);
   }
 
-  @Mutation((_of) => User)
+  @Mutation(() => User)
   public async updatePassword(
     @CurrentUser()
     jwtPayload: JwtPayload,
@@ -57,7 +57,7 @@ export class AuthResolver {
     return await this.authService.updatePassword(updatePasswordInput);
   }
 
-  @Query((_returns) => User)
+  @Query(() => User)
   public async self(
     @CurrentUser()
     jwtPayload: JwtPayload,
