@@ -7,6 +7,6 @@ export class AuthenticationType implements IAuthenticationType {
   @Field()
   accessToken: string;
 
-  @Field((_type) => User)
+  @Field(() => User)
   user: User;
 }
