@@ -15,6 +15,6 @@ export class CreateCustomerInput implements ICreateCustomerInput {
   @Field()
   telephoneNumber: string;
 
-  @Field((_type) => ID)
+  @Field(() => ID)
   company: string;
 }
