@@ -12,6 +12,6 @@ export class UpdateCustomerPayload implements IUpdateCustomerPayload {
   @Field({ nullable: true })
   lastName?: string;
 
-  @Field((_type) => ID, { nullable: true })
+  @Field(() => ID, { nullable: true })
   company: string;
 }
