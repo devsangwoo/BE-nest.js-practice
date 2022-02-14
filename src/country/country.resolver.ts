@@ -13,14 +13,14 @@ import { CLIENT } from 'src/common/auth/arrays/authorized-roles.arrays';
 
 @Resolver(() => Country)
 export class CountryResolver {
-  constructor(private readonly countryService: CountryService) {}
+  constructor(private readonly service: CountryService) {}
 
   @AuthorizedRoles(UserRoles.ADMIN)
   @Query(() => Country)
   public async getCountryById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Country> {
-    return this.countryService.getEntityById({ id });
+    return this.service.getEntityById({ id });
   }
 
   @AuthorizedRoles(...CLIENT)
@@ -29,7 +29,7 @@ export class CountryResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
   ): Promise<Country[]> {
-    return this.countryService.getAllEntities(filterInput);
+    return this.service.getAllEntities(filterInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -37,7 +37,7 @@ export class CountryResolver {
   public async createCountry(
     @Args(GraphQlFieldNames.INPUT_FIELD) createCountryInput: CreateCountryInput,
   ): Promise<Country> {
-    return this.countryService.createEntity(createCountryInput);
+    return this.service.createEntity(createCountryInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -45,7 +45,7 @@ export class CountryResolver {
   public async updateCountry(
     @Args(GraphQlFieldNames.INPUT_FIELD) updateCountryInput: UpdateCountryInput,
   ): Promise<Country> {
-    return this.countryService.updateEntity(updateCountryInput);
+    return this.service.updateEntity(updateCountryInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -53,6 +53,6 @@ export class CountryResolver {
   public async deleteCountry(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Country> {
-    return this.countryService.deleteEntity({ id });
+    return this.service.deleteEntity({ id });
   }
 }

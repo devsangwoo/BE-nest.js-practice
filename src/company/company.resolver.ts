@@ -13,7 +13,7 @@ import { CLIENT } from 'src/common/auth/arrays/authorized-roles.arrays';
 
 @Resolver(() => Company)
 export class CompanyResolver {
-  constructor(private readonly companyService: CompanyService) {}
+  constructor(private readonly service: CompanyService) {}
 
   @AuthorizedRoles(...CLIENT)
   @Query(() => Company)
@@ -21,7 +21,7 @@ export class CompanyResolver {
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
   ): Promise<Company> {
-    return this.companyService.getEntityById({ id });
+    return this.service.getEntityById({ id });
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -30,7 +30,7 @@ export class CompanyResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
   ): Promise<Company[]> {
-    return this.companyService.getAllEntities(filterInput);
+    return this.service.getAllEntities(filterInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -38,7 +38,7 @@ export class CompanyResolver {
   public async createCompany(
     @Args(GraphQlFieldNames.INPUT_FIELD) createCompanyInput: CreateCompanyInput,
   ): Promise<Company> {
-    return this.companyService.createEntity(createCompanyInput);
+    return this.service.createEntity(createCompanyInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -46,7 +46,7 @@ export class CompanyResolver {
   public async updateCompany(
     @Args(GraphQlFieldNames.INPUT_FIELD) updateCompanyInput: UpdateCompanyInput,
   ): Promise<Company> {
-    return this.companyService.updateEntity(updateCompanyInput);
+    return this.service.updateEntity(updateCompanyInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -54,6 +54,6 @@ export class CompanyResolver {
   public async deleteCompany(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Company> {
-    return this.companyService.deleteEntity({ id });
+    return this.service.deleteEntity({ id });
   }
 }
