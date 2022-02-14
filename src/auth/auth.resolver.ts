@@ -28,7 +28,7 @@ export class AuthResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD)
     signUpUserInput: SignUpUserInput,
   ): Promise<AuthenticationType> {
-    return await this.authService.signUpUser(signUpUserInput);
+    return this.authService.signUpUser(signUpUserInput);
   }
 
   @Public()
@@ -39,7 +39,7 @@ export class AuthResolver {
     signInUserInput: CreateCredentialInput,
     @CurrentUser() user: UserEntity,
   ): Promise<AuthenticationType> {
-    return await this.authService.signInUser(user);
+    return this.authService.signInUser(user);
   }
 
   @Mutation(() => User)
@@ -54,7 +54,7 @@ export class AuthResolver {
       data: updatePasswordPayload,
     };
 
-    return await this.authService.updatePassword(updatePasswordInput);
+    return this.authService.updatePassword(updatePasswordInput);
   }
 
   @Query(() => User)
@@ -62,6 +62,6 @@ export class AuthResolver {
     @CurrentUser()
     jwtPayload: JwtPayload,
   ): Promise<User> {
-    return await this.userService.getEntityById({ id: jwtPayload.id });
+    return this.userService.getEntityById({ id: jwtPayload.id });
   }
 }

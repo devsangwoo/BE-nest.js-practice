@@ -21,7 +21,7 @@ export class CompanyResolver {
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption)
     id: string,
   ): Promise<Company> {
-    return await this.companyService.getEntityById({ id });
+    return this.companyService.getEntityById({ id });
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -30,7 +30,7 @@ export class CompanyResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
   ): Promise<Company[]> {
-    return await this.companyService.getAllEntities(filterInput);
+    return this.companyService.getAllEntities(filterInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -38,7 +38,7 @@ export class CompanyResolver {
   public async createCompany(
     @Args(GraphQlFieldNames.INPUT_FIELD) createCompanyInput: CreateCompanyInput,
   ): Promise<Company> {
-    return await this.companyService.createEntity(createCompanyInput);
+    return this.companyService.createEntity(createCompanyInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -46,7 +46,7 @@ export class CompanyResolver {
   public async updateCompany(
     @Args(GraphQlFieldNames.INPUT_FIELD) updateCompanyInput: UpdateCompanyInput,
   ): Promise<Company> {
-    return await this.companyService.updateEntity(updateCompanyInput);
+    return this.companyService.updateEntity(updateCompanyInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -54,6 +54,6 @@ export class CompanyResolver {
   public async deleteCompany(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Company> {
-    return await this.companyService.deleteEntity({ id });
+    return this.companyService.deleteEntity({ id });
   }
 }

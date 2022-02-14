@@ -20,7 +20,7 @@ export class CountryResolver {
   public async getCountryById(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Country> {
-    return await this.countryService.getEntityById({ id });
+    return this.countryService.getEntityById({ id });
   }
 
   @AuthorizedRoles(...CLIENT)
@@ -29,7 +29,7 @@ export class CountryResolver {
     @Args(GraphQlFieldNames.INPUT_FIELD, graphQlFindQueryOptions)
     filterInput: FilterInput,
   ): Promise<Country[]> {
-    return await this.countryService.getAllEntities(filterInput);
+    return this.countryService.getAllEntities(filterInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -37,7 +37,7 @@ export class CountryResolver {
   public async createCountry(
     @Args(GraphQlFieldNames.INPUT_FIELD) createCountryInput: CreateCountryInput,
   ): Promise<Country> {
-    return await this.countryService.createEntity(createCountryInput);
+    return this.countryService.createEntity(createCountryInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -45,7 +45,7 @@ export class CountryResolver {
   public async updateCountry(
     @Args(GraphQlFieldNames.INPUT_FIELD) updateCountryInput: UpdateCountryInput,
   ): Promise<Country> {
-    return await this.countryService.updateEntity(updateCountryInput);
+    return this.countryService.updateEntity(updateCountryInput);
   }
 
   @AuthorizedRoles(UserRoles.ADMIN)
@@ -53,6 +53,6 @@ export class CountryResolver {
   public async deleteCountry(
     @Args(GraphQlFieldNames.ID_FIELD, graphQlIdArgOption) id: string,
   ): Promise<Country> {
-    return await this.countryService.deleteEntity({ id });
+    return this.countryService.deleteEntity({ id });
   }
 }
